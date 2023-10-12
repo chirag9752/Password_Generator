@@ -14,21 +14,27 @@ const allCheckBox = document.querySelectorAll("input[type = checkbox]");
 const symbols = ' ~`!@#$%^&*()_-+={[}]|:;"<,>.?/ ';
 
 
-
+// initally
 let password = "";
 let passwordLength = 10;
 let checkCount = 0;
 handleSlider();
+// set strength circel to grey
+setIndicator("#ccc");
 
 function handleSlider()                // password length ko ui me dikhaata hai
 {
     inputSlider.value = passwordLength;
     lengthDisplay.innerText = passwordLength;
+    const min = inputSlider.min;
+    const max = inputSlider.max;
+    inputSlider.style.backgroundSize = ((passwordLength - min)*100 /(max - min)) + "%100";
 }
 
 function setIndicator(color)
 {
     indicator.style.backgroundColor = color;
+    indicator.style.boxShadow = `0px 0px 12px 1px ${color}`;
 }
 
 function getRndInteger(min , max)
